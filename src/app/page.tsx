@@ -18,7 +18,11 @@ export default function Home() {
 		const startAudio = async () => {
 			await Tone.start();
 			follower = new MusicNoteFollower();
-			followerRef.current = follower;
+			follower.loadMidiFile('/songs/drowning_love.mid');
+			setTimeout(() => {
+				follower?.play();
+			}, 500);
+			// followerRef.current = follower;
 			console.log('🎵 MusicNoteFollower started');
 			document.removeEventListener('click', startAudio);
 		}
@@ -28,6 +32,7 @@ export default function Home() {
 		return () => {
 			document.removeEventListener('click', startAudio);
 			follower?.destroy();
+			followerRef.current = null;
 		}
 	}, []);
 
@@ -40,6 +45,7 @@ export default function Home() {
 		}
 	}
 
+
 	function handleSetVolume(volume: number) {
 
 	}
@@ -47,7 +53,7 @@ export default function Home() {
 	return (
 		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
 			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-				<VolumeSlider setExternalMuted={handleToggleMusic} setExternalVolume={handleSetVolume} />
+				{/* <VolumeSlider setExternalMuted={handleToggleMusic} setExternalVolume={handleSetVolume} /> */}
 				<Image
 					className="dark:invert"
 					src="/next.svg"
