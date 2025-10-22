@@ -1,55 +1,12 @@
 'use client'
 
-import Image from 'next/image'
-import { useEffect, useRef } from 'react'
-import * as Tone from 'tone'
-import { MusicNoteFollower } from './musicFollower'
 
-export default function Home() {
-
-	const followerRef = useRef<MusicNoteFollower | null>(null);
-
-	useEffect(() => {
-
-		let follower: MusicNoteFollower | null = null
-
-		// Wait for user interaction to unlock audio
-		const startAudio = async () => {
-			await Tone.start();
-			follower = new MusicNoteFollower();
-			follower.loadMidiFile('/songs/drowning_love.mid');
-			follower?.play();
-			// followerRef.current = follower;
-			console.log('🎵 MusicNoteFollower started');
-			document.removeEventListener('click', startAudio);
-		}
-
-		// document.addEventListener('click', startAudio);
-
-		return () => {
-			document.removeEventListener('click', startAudio);
-			follower?.destroy();
-			followerRef.current = null;
-		}
-	}, []);
-
-	function handleToggleMusic(isMuted: boolean) {
-		if (followerRef.current) {
-			if (isMuted)
-				followerRef.current.pause();
-			else
-				followerRef.current.play();
-		}
-	}
-
-
-	function handleSetVolume(volume: number) {
-
-	}
+export default function About() {
 
 	return (
 		<div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center  p-8 pb-20 gap-16 sm:p-20">
 			<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+				<h2>About</h2>
 				{/* <VolumeSlider setExternalMuted={handleToggleMusic} setExternalVolume={handleSetVolume} /> */}
 				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque aut accusamus mollitia inventore iste repellat eos eligendi, ea adipisci delectus, voluptates quidem voluptatibus similique? Ad, quo. Deserunt veritatis dolor distinctio.
 				Adipisci ullam magnam tenetur earum incidunt odio alias dolor sit dignissimos optio quam saepe, corporis est eaque molestias sunt, impedit hic doloribus quo, suscipit dolorem perferendis ad qui. Ducimus, exercitationem?
