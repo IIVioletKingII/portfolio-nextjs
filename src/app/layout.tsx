@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from 'next-themes';
 import "./globals.css";
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
 import Navbar from './components/Navbar';
+
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",

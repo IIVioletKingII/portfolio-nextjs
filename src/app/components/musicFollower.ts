@@ -3,6 +3,8 @@
 import { Midi } from '@tonejs/midi';
 import * as Tone from 'tone';
 
+let defaultFollower: MusicNoteFollower | null = null
+
 type NoteEvent = {
 	time: number;
 	note: string;
@@ -254,4 +256,11 @@ export class MusicNoteFollower {
 		this.loopPart!.loopEnd = `${measures}m`;
 		console.log(`Loop end set to ${Math.round(measures)} measures`);
 	}
+}
+
+export function getFollower(): MusicNoteFollower {
+	if (!defaultFollower)
+		defaultFollower = new MusicNoteFollower();
+
+	return defaultFollower;
 }

@@ -2,7 +2,9 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from 'react';
+import { Volume, Volume1, Volume2, VolumeX } from 'lucide-react'
 import { VolumeController } from './VolumeController'; // Import the simplified class
+import { init } from 'next/dist/compiled/webpack/webpack';
 
 // Define the component's props interface
 interface VolumeSliderProps {
@@ -10,6 +12,8 @@ interface VolumeSliderProps {
 	setExternalMuted: (isMuted: boolean) => void;
 	initialVolume?: number; // Optional starting volume, defaults to 0.5
 }
+
+const volumeButtonStyles = 'w-5 h-5';
 
 const VolumeSlider: React.FC<VolumeSliderProps> = ({
 	setExternalVolume,
@@ -22,6 +26,11 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
 		new VolumeController(initialVolume, setExternalVolume, setExternalMuted),
 		[initialVolume, setExternalVolume, setExternalMuted]
 	);
+
+	useEffect(() => {
+		if (initialVolume === 0)
+			controller.toggleMute();
+	}, [])
 
 	// State to drive the UI (synced by the controller's callbacks)
 	// Initial state is set via the controller's immediate callback in useEffect
@@ -46,26 +55,29 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
 	const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const newVolume = parseFloat(event.target.value);
 		controller.setVolume(newVolume);
+		if (newVolume === 0)
+			controller.toggleMute();
 	};
 
 	const displayVolume = isMuted ? 0 : volume;
 
-	const icon = isMuted || displayVolume === 0
-		? '🔇' // Mute icon
-		: volume < 0.5
-			? '🔈' // Low volume icon
-			: '🔊'; // High volume icon
-
+	const getVolumeIcon = () => {
+		if (isMuted || displayVolume === 0) return <VolumeX className={volumeButtonStyles} />;
+		if (volume < 0.2) return <Volume className={volumeButtonStyles} />;
+		if (volume < 0.66) return <Volume1 className={volumeButtonStyles} />;
+		return <Volume2 className={volumeButtonStyles} />;
+	};
 
 	return (
-		<div style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '20px', border: '1px solid #0070f3', borderRadius: '8px' }}>
+		<div className='flex align-center gap-2'>
 			{/* Mute/Unmute Button (Toggle) */}
-			<button onClick={() => controller.toggleMute()} style={{ fontSize: '24px', cursor: 'pointer', border: 'none', background: 'none' }}>
-				{icon}
+			<button onClick={() => controller.toggleMute()} className='p-2 rounded-full hover:opacity-60 cursor-pointer' >
+				{getVolumeIcon()}
 			</button>
 
 			{/* Volume Slider */}
 			<input
+				className='hidden'
 				title='volume slider'
 				type="range"
 				min="0"
@@ -73,9 +85,9 @@ const VolumeSlider: React.FC<VolumeSliderProps> = ({
 				step="0.01"
 				value={displayVolume}
 				onChange={handleSliderChange}
-				style={{ width: '150px' }}
+				style={{ width: '100px' }}
 			/>
-			<span>{Math.round(displayVolume * 100)}%</span>
+			{/* <span>{Math.round(displayVolume * 100)}%</span> */}
 		</div>
 	);
 };
