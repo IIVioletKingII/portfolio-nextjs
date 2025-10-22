@@ -1,27 +1,89 @@
 @import "tailwindcss";
 
-/* :root {
-	--background: #ffffff;
-	--foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	/* Light mode colors */
+	--color-background-light: #ffffff;
+	--color-text-light: #1e293b;
+	--color-accent-light: #ae00ff;
+	--color-primary-light: #4f46e5;
+	--color-secondary-light: #f59e0b;
+
+	/* Dark mode colors */
+	--color-background-dark: #18181b;
+	--color-text-dark: #f8fafc;
+	--color-accent-dark: #8400ff;
+	--color-primary-dark: #818cf8;
+	--color-secondary-dark: #fbbf24;
+	--color-card-dark: #27272a;
+
 }
 
-@theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--font-sans: var(--font-geist-sans);
-	--font-mono: var(--font-geist-mono);
+:root {
+	--hero-bg-color: rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--background: #0a0a0a;
-		--foreground: #ededed;
+.dark {
+	--hero-bg-color: rgba(255, 255, 255, 0.07);
+
+
+	--xy-node-background-color: var(--color-card-dark);
+	--xy-attribution-background-color: transparent;
+}
+
+.react-flow__attribution {
+	z-index: 10000 !important;
+	/* color: var(--color-text-light) !important; */
+	margin-right: 2rem !important;
+	margin-bottom: 1.5rem !important;
+}
+
+.celigo-app-bg-dots {
+	color: green;
+}
+
+
+.hero-bg-dots {
+	background-image: radial-gradient(var(--hero-bg-color) 1px, transparent 1px);
+	background-size: 16px 16px;
+}
+
+.hero-bg-grid {
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+
+@layer utilities {
+	.bg-fade-mask {
+		--fade-distance: 2rem;
+		background:
+			linear-gradient(to bottom,
+				var(--fade-edge),
+				transparent var(--fade-distance),
+				transparent calc(100% - var(--fade-distance)),
+				var(--fade-edge)),
+			linear-gradient(to right,
+				var(--fade-edge),
+				transparent var(--fade-distance),
+				transparent calc(100% - var(--fade-distance)),
+				var(--fade-edge));
+		;
 	}
-} */
+
+	:root {
+		--fade-edge: var(--color-white);
+	}
+
+	.dark {
+		--fade-edge: var(--color-card-dark);
+		/* --fade-edge: black; */
+	}
+}
 
 body {
-	/* background: var(--background);
-	color: var(--foreground); */
 	font-family: Arial, Helvetica, sans-serif;
 }
 

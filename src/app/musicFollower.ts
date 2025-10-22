@@ -32,16 +32,6 @@ export class MusicNoteFollower {
 		fadeTimer?: number;
 		phase: 'waiting' | 'fadeIn' | 'land' | 'fadeOut';
 	}[] = [];
-	private notes: {
-		x: number;
-		y: number;
-		targetY: number;
-		startTime: number;
-		landTime: number;
-		life: number;
-		vy: number;
-		phase: 'fadeIn' | 'land' | 'fadeOut';
-	}[] = [];
 	private synth: Tone.PolySynth;
 	private isActive = false;
 	private stopTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -99,8 +89,6 @@ export class MusicNoteFollower {
 		if (!transport.state || transport.state !== 'started') {
 			transport.start()
 		}
-
-
 	}
 
 	private draw = () => {
@@ -115,7 +103,6 @@ export class MusicNoteFollower {
 
 			const ctx = this.ctx;
 			ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
 
 			this.allNotes.forEach((n, i) => {
 
@@ -133,7 +120,6 @@ export class MusicNoteFollower {
 
 				if (n.fadeTimer && n.phase !== 'fadeOut' && now - n.fadeTimer > this.anim.fadeOutTime)
 					n.phase = 'fadeOut';
-
 
 				if (tNow < n.landTime) {
 					if (this.lastFrame < n.startTime) {

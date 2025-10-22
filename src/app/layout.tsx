@@ -31,7 +31,7 @@ export default function RootLayout({
 			>
 				<ThemeProvider attribute="class" defaultTheme="system" enableSystem>
 					<Navbar />
-					<main className="pt-16">{children}</main>
+					<main /* className="pt-16" */>{children}</main>
 				</ThemeProvider>
 			</body>
 		</html>
