@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import {
 	ReactFlow,
 	addEdge,
@@ -114,6 +114,9 @@ export default function CeligoApp() {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [flowEnabled, setFlowEnabled] = useState(false);
 
+	const containerRef = useRef<HTMLDivElement>(null)
+	const [size, setSize] = useState({ width: 0, height: 0 })
+
 	const onNodesChange: OnNodesChange = useCallback(
 		(changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
 		[setNodes],
@@ -127,7 +130,19 @@ export default function CeligoApp() {
 		[setEdges],
 	);
 
-	const flowEnabledText = flowEnabled ? 'Your flow is currently enabled.\nDisable your flow to use test mode, where you can run tests with mock data.' : 'Your flow is disabled. Enable the flow to transfer data.';
+	useEffect(() => {
+		const observer = new ResizeObserver(entries => {
+			for (let entry of entries) {
+				let { width, height } = entry.contentRect;
+				height = Math.max(height, 250);
+				setSize({ width, height })
+			}
+		})
+		if (containerRef.current) observer.observe(containerRef.current)
+		return () => observer.disconnect()
+	}, [])
+
+	const flowEnabledText = flowEnabled ? 'Your flow is currently enabled. Disable your flow to use test mode, where you can run tests with mock data.' : 'Your flow is disabled. Enable the flow to transfer data.';
 
 	return (
 		<div className="cgo">
@@ -135,15 +150,15 @@ export default function CeligoApp() {
 
 				<header className="w-full flex flex-row gap-2 align-center px-1 my-4 gap-4">
 					<div className="ml-auto"></div>
-					<span className="inline-flex" data-state="closed" aria-label="View analytics">
-						<button className="inline-flex items-center justify-center shrink-0 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background font-display transition-colors empty:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focusRingBorder focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:shadow-none focus-visible:bg-surface-elevated hover:bg-surface-elevated hover:text-default disabled:text-default-disabled shadow-none h-9 w-9 [&amp;&gt;svg]:disabled:fill-icon-default-disabled [&amp;&gt;svg]:fill-icon-default [&amp;&gt;svg]:w-lg [&amp;&gt;svg]:h-lg" data-test="charts">
+					<TailwindTooltip title="View analytics">
+						<button type="button" className="cgo-button transition-colors h-9 w-9 rounded-sm cursor-pointer" >
 							<Analytics />
 						</button>
-					</span>
+					</TailwindTooltip>
 					<span><Divider className='py-3' orientation="vertical" /></span>
 					<div className="">
 						<TailwindTooltip title={flowEnabledText}>
-							<Android12Switch />
+							<Android12Switch checked={flowEnabled} onChange={(e) => setFlowEnabled(e.target.checked)} />
 						</TailwindTooltip>
 					</div>
 
@@ -157,7 +172,8 @@ export default function CeligoApp() {
 						<Divider className='' orientation="vertical" flexItem />
 
 						<TailwindTooltip title="Run flow with single source">
-							<button className="cgo-button transition-colors h-[30px] aspect-1/1 rounded-r-[4px] rounded-l-none cursor-pointer">
+							<button className="cgo-button transition-colors h-[30px] aspect-1/1 rounded-r-[4px] rounded-l-none cursor-pointer"
+								onClick={() => setDropdownOpen(!dropdownOpen)}>
 								{/* <CalendarMonthOutlinedIcon /> */}
 								<div style={{ transform: dropdownOpen ? 'rotate(180deg)' : '' }}>
 									<Dropdown />
@@ -192,8 +208,11 @@ export default function CeligoApp() {
 					<span data-state="closed" aria-label="Exit flow &amp; return to all integration flows">
 					</span>
 				</header>
-				<div className="relative overflow-hidden rounded-2xl bg-card">
-					<div className="relative w-150 aspect-5/3">
+				<div className="relative overflow-hidden rounded-2xl bg-card" ref={containerRef}>
+					<div className="relative" style={{
+						width: size.width,
+						height: size.height
+					}}>
 						<ReactFlow
 							nodes={nodes}
 							edges={edges}
