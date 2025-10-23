@@ -1,3 +1,5 @@
+
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import {
 	ReactFlow,
@@ -114,8 +116,8 @@ export default function CeligoApp() {
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [flowEnabled, setFlowEnabled] = useState(false);
 
-	const containerRef = useRef<HTMLDivElement>(null)
-	const [size, setSize] = useState({ width: 0, height: 0 })
+	const containerRef = useRef<HTMLDivElement>(null);
+	const [size, setSize] = useState({ width: 0, height: 0 });
 
 	const onNodesChange: OnNodesChange = useCallback(
 		(changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -134,21 +136,26 @@ export default function CeligoApp() {
 		const observer = new ResizeObserver(entries => {
 			for (let entry of entries) {
 				let { width, height } = entry.contentRect;
-				height = Math.max(height, 250);
-				setSize({ width, height })
+				height = Math.max(height, 300);
+				setSize({ width, height });
 			}
 		})
 		if (containerRef.current) observer.observe(containerRef.current)
 		return () => observer.disconnect()
 	}, [])
 
-	const flowEnabledText = flowEnabled ? 'Your flow is currently enabled. Disable your flow to use test mode, where you can run tests with mock data.' : 'Your flow is disabled. Enable the flow to transfer data.';
+	const flowEnabledText = flowEnabled ?
+		'Your flow is currently enabled. Disable your flow to use test mode, where you can run tests with mock data.'
+		: 'Your flow is disabled. Enable the flow to transfer data.';
 
 	return (
 		<div className="cgo">
-			<MuiThemeProvider>
 
-				<header className="w-full flex flex-row gap-2 align-center px-1 my-4 gap-4">
+			<MuiThemeProvider>
+				<header className="w-full flex flex-wrap flex-row gap-2 align-center px-4 my-4 gap-4">
+					<span className="font-sans text-xl text-semibold my-auto">
+						Example Flow
+					</span>
 					<div className="ml-auto"></div>
 					<TailwindTooltip title="View analytics">
 						<button type="button" className="cgo-button transition-colors h-9 w-9 rounded-sm cursor-pointer" >
@@ -185,7 +192,7 @@ export default function CeligoApp() {
 					<span><Divider className='py-3' orientation="vertical" /></span>
 
 					<TailwindTooltip title="Add schedule">
-						<button className="cgo-button light-outline fill transition-colors h-9 w-9  rounded-sm cursor-pointer">
+						<button className="cgo-button light-outline fill transition-colors h-9 w-9 rounded-sm cursor-pointer">
 							<Calendar />
 						</button>
 					</TailwindTooltip>
@@ -201,40 +208,39 @@ export default function CeligoApp() {
 					<span><Divider className='py-3' orientation="vertical" /></span>
 
 					<TailwindTooltip title="Exit flow & return to all integration flows" >
-						<button className="cgo-button transition-colors h-7 w-7 rounded-sm cursor-pointer" data-test="close-flow-builder">
+						<button className="cgo-button transition-colors h-7 w-7 rounded-sm cursor-pointer">
 							<Cross />
 						</button>
 					</TailwindTooltip>
-					<span data-state="closed" aria-label="Exit flow &amp; return to all integration flows">
-					</span>
 				</header>
-				<div className="relative overflow-hidden rounded-2xl bg-card" ref={containerRef}>
-					<div className="relative" style={{
-						width: size.width,
-						height: size.height
-					}}>
-						<ReactFlow
-							nodes={nodes}
-							edges={edges}
-							onNodesChange={onNodesChange}
-							onEdgesChange={onEdgesChange}
-							onConnect={onConnect}
-							onNodeDrag={onNodeDrag}
-							fitView
-							fitViewOptions={fitViewOptions}
-							defaultEdgeOptions={defaultEdgeOptions}
-						>
-							<Background
-								variant={BackgroundVariant.Dots}
-								gap={15}
-								size={1}
-							/>
-						</ReactFlow>
-					</div>
-					<div className="absolute inset-0 pointer-events-none bg-fade-mask" />
-				</div>
-
 			</MuiThemeProvider>
+
+			<div className="relative overflow-hidden rounded-2xl bg-card" ref={containerRef}>
+				<div className="relative" style={{
+					width: size.width,
+					height: size.height
+				}}>
+					<ReactFlow
+						nodes={nodes}
+						edges={edges}
+						onNodesChange={onNodesChange}
+						onEdgesChange={onEdgesChange}
+						onConnect={onConnect}
+						onNodeDrag={onNodeDrag}
+						fitView
+						fitViewOptions={fitViewOptions}
+						defaultEdgeOptions={defaultEdgeOptions}
+					>
+						<Background
+							variant={BackgroundVariant.Dots}
+							gap={15}
+							size={1}
+						/>
+					</ReactFlow>
+				</div>
+				<div className="absolute inset-0 pointer-events-none bg-fade-mask" />
+			</div>
+
 		</div>
 	);
 }

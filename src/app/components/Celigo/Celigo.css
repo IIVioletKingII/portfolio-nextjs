@@ -2,16 +2,14 @@
 	--outline-1: #e4e4e7;
 	--outline-2: #a1a1a9;
 	--fill-1: #f4f4f5;
-	--fill-2: #fafafa;
-	--fill-3: #a1a1a9;
+	--fill-2: var(--outline-1);
 }
 
 .dark .cgo {
-	--outline-1: #e4e4e7;
-	--outline-2: #a1a1a9;
-	--fill-1: #f4f4f5;
-	--fill-2: #fafafa;
-	--fill-3: #a1a1a9;
+	--outline-1: #4a494b;
+	--outline-2: #6d6d6d;
+	--fill-1: #2e2e2e;
+	--fill-2: var(--outline-1);
 }
 
 .cgo-button {
@@ -39,7 +37,7 @@
 
 .cgo-button.fill {
 	--fill: var(--fill-1);
-	--hover-fill: var(--outline-1);
+	--hover-fill: var(--fill-2);
 }
 
 .cgo-button:hover:not(.switch) {

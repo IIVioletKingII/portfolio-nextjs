@@ -5,9 +5,9 @@ import { Moon, Sun, Loader } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 export default function ThemeToggle() {
-	const { theme, systemTheme, setTheme } = useTheme()
+	const { theme, systemTheme, setTheme } = useTheme();
 
-	const [mounted, setMounted] = useState(false)
+	const [mounted, setMounted] = useState(false);
 
 	useEffect(() => {
 		setMounted(true)

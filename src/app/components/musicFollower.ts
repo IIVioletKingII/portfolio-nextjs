@@ -43,7 +43,6 @@ export class MusicNoteFollower {
 
 	private lastMouseX = window.innerWidth / 2;
 	private lastMouseY = window.innerHeight / 2;
-	private index = 0;
 
 	constructor() {
 
