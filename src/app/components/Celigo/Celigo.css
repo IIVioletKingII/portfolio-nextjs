@@ -1,0 +1,82 @@
+.cgo {
+	--outline-1: #e4e4e7;
+	--outline-2: #a1a1a9;
+	--fill-1: #f4f4f5;
+	--fill-2: #fafafa;
+	--fill-3: #a1a1a9;
+	/* border: green 1px solid; */
+}
+
+.dark .cgo {
+	--outline-1: #e4e4e7;
+	--outline-2: #a1a1a9;
+	--fill-1: #f4f4f5;
+	--fill-2: #fafafa;
+	--fill-3: #a1a1a9;
+}
+
+.cgo-button {
+	--outline: none;
+	--fill: transparent;
+	background: var(--fill);
+
+	border: var(--outline) 1px solid;
+	--hover-fill: var(--fill-1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.cgo-button:not(switch) {}
+
+.cgo-button.light-outline {
+	--outline: var(--outline-1);
+}
+
+.cgo-button.dark-outline {
+	--outline: var(--outline-2);
+}
+
+.cgo-button.fill {
+	--fill: var(--fill-1);
+	--hover-fill: var(--outline-1);
+}
+
+.cgo-button:hover:not(.switch) {
+	background: var(--hover-fill);
+}
+
+[class*="icon-"] {
+	aspect-ratio: 1;
+}
+
+.icon-analytics {
+	width: 24px;
+}
+
+.icon-play {
+	width: 16px;
+}
+
+.icon-dropdown {
+	width: 16px;
+}
+
+.icon-calendar {
+	width: 24px;
+}
+
+.icon-settings {
+	width: 20px;
+}
+
+.icon-dots-horizontal {
+	width: 20px;
+}
+
+.icon-cross {
+	width: 16px;
+}

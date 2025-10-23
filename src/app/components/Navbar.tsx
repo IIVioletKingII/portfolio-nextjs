@@ -22,7 +22,7 @@ export default function Navbar() {
 	}, [])
 
 	function handleToggleMusic(isMuted: boolean) {
-		const follower = getFollower();
+		const follower: MusicNoteFollower = getFollower();
 		if (isMuted)
 			follower.pause();
 		else
@@ -39,7 +39,7 @@ export default function Navbar() {
 		<header className='fixed w-full backdrop-blur-sm shadow-sm z-50'>
 
 			<nav className='flex items-center justify-between p-4 max-w-4xl m-auto'>
-				<Link href="/" className='text-xl font-semibold'>SD</Link>
+				<Link href="/" className='text-3xl font-semibold'>SD</Link>
 
 				<ul className='flex space-x-6'>
 					<li>
