@@ -19,7 +19,6 @@ import {
 	type DefaultEdgeOptions,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import ToggleButton from '../ToggleButton'
 import MuiThemeProvider from '../MuiThemeProvider';
 import Divider from '@mui/material/Divider';
 import { Analytics, Play, Dropdown, Calendar, Settings, DotHor, Cross } from './CeligoIcons'
@@ -27,14 +26,14 @@ import './Celigo.css'
 
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import Switch, { SwitchProps } from '@mui/material/Switch';
+import Switch from '@mui/material/Switch';
 
 const nodeDefaults = {
 	sourcePosition: Position.Right,
 	targetPosition: Position.Left,
 };
 
-const TailwindTooltip = styled(({ className, ...props }: TooltipProps) => (
+const TailwindTooltip = styled(({ ...props }: TooltipProps) => (
 	<Tooltip placement='top' arrow {...props} slotProps={{
 		tooltip: {
 			'className': '!text-white dark:!text-gray-950 !bg-black dark:!bg-white'
@@ -134,10 +133,9 @@ export default function CeligoApp() {
 
 	useEffect(() => {
 		const observer = new ResizeObserver(entries => {
-			for (let entry of entries) {
-				let { width, height } = entry.contentRect;
-				height = Math.max(height, 300);
-				setSize({ width, height });
+			for (const entry of entries) {
+				const { width, height } = entry.contentRect;
+				setSize({ width, height: Math.max(height, 300) });
 			}
 		})
 		if (containerRef.current) observer.observe(containerRef.current)

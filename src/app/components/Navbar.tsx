@@ -31,7 +31,7 @@ export default function Navbar() {
 
 
 	function handleSetVolume(volume: number) {
-		const follower = getFollower();
+		// const follower = getFollower();
 		// follower.setVolume(volume);
 	}
 
