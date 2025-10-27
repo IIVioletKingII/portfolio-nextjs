@@ -69,3 +69,8 @@
 .icon-cross {
 	width: 16px;
 }
+
+.hidden-handle {
+	--xy-handle-background-color: transparent;
+	--xy-handle-border-color: transparent;
+}

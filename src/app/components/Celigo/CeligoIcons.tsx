@@ -103,3 +103,12 @@ export const Cross = (): JSX.Element => (
 		</path>
 	</svg>
 );
+
+export const Filter = (): JSX.Element => (
+	<svg focusable="false" aria-hidden="true" viewBox="0 0 24 24" className="size-base icon-filter dark:fill-white">
+		<g>
+			<path d="m6.53 14.78-3.75 3.75A.75.75 0 0 1 1.5 18v-7.5a.75.75 0 0 1 1.28-.53l3.75 3.75a.75.75 0 0 1 0 1.06"></path>
+			<path d="M21.616 4.643a1.48 1.48 0 0 0-1.369-.893h-16.5A1.5 1.5 0 0 0 2.64 6.259l.007.008 6.35 6.78v7.203a1.5 1.5 0 0 0 2.332 1.249l3-2a1.5 1.5 0 0 0 .668-1.25v-5.202l6.35-6.78.008-.008a1.48 1.48 0 0 0 .26-1.616m-7.712 7.383c-.26.276-.406.642-.407 1.021v5.202l-3 2.001v-7.203c0-.38-.144-.748-.405-1.025L3.747 5.25h16.5z"></path>
+		</g>
+	</svg>
+);

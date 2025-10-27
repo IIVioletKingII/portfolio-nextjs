@@ -1,8 +1,8 @@
 'use client'
 
 // import {FontAwesomneIcon} from
-
-const linkClasses = 'text-3xl hover:text-violet-400';
+const hoverClass = 'hover:text-violet-400';
+const linkClasses = `text-3xl ${hoverClass}`;
 
 export default function Hero() {
 
@@ -13,9 +13,9 @@ export default function Hero() {
 					<img className='' src="https://raw.githubusercontent.com/IIVioletKingII/sam-depoule/main/src/assets/sam-110.jpg" alt="" />
 				</div>
 				<div className="flex flex-col gap-8 font-semibold flex-1">
-					<span className="text-5xl font-semibold">Sam DePoule</span>
-					<span className="flex gap-4 text-4xl flex-wrap">
-						<span>Full-Stack Developer</span><span>Cloud Integration Developer</span>
+					<span className="text-5xl font-semibold ">Sam DePoule</span>
+					<span className="text-4xl dark:text-gray-300 text-gray-800">
+						<span className="dark:text-violet-400 text-violet-700">Full-Stack</span> & <span className="dark:text-violet-400 text-violet-700">Cloud Integration</span> Developer
 					</span>
 					<div className='flex gap-4'>
 						<a href="https://github.com/IIVioletKingII" className={linkClasses}>

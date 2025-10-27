@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon } from 'lucide-react';
+// import { Moon } from 'lucide-react';
 import VolumeSlider from './VolumeSlider'
 import ThemeToggle from './ThemeToggle'
 import { getFollower, MusicNoteFollower } from './musicFollower'
@@ -45,7 +45,7 @@ export default function Navbar() {
 					<li>
 						<Link
 							href='/'
-							className={pathname === '/' ? 'text-violet-400' : 'hover:text-violet-300'}
+							className={pathname === '/' ? 'text-violet-900 dark:text-violet-400' : 'hover:text-violet-700 hover:dark:text-violet-400'}
 						>
 							Home
 						</Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
 					<li>
 						<Link
 							href='/about'
-							className={pathname === '/about' ? 'text-violet-400' : 'hover:text-violet-300'}
+							className={pathname === '/about' ? 'text-violet-700 dark:text-violet-400' : 'hover:text-violet-700 hover:dark:text-violet-400'}
 						>
 							About
 						</Link>
