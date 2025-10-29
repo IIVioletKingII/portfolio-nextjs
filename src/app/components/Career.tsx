@@ -1,6 +1,8 @@
 'use client'
 
 import CeligoApp from './Celigo/CeligoApp';
+import SPFxApp from './SPFx/SPFxApp';
+import Image from 'next/image';
 
 export default function Hero() {
 
@@ -10,7 +12,7 @@ export default function Hero() {
 				<header className='font-bold text-4xl my-16'>
 					<span>Career</span>
 				</header>
-				<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full">
+				<main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start w-full max-w-7xl m-auto">
 
 					<div className='flex w-full items-center justify-between gap-4'>
 						<div className='font-bold text-2xl'>
@@ -35,18 +37,39 @@ export default function Hero() {
 					</div>
 					{/* card */}
 					<div className="bg-white dark:bg-card-dark rounded-2xl ring shadow-xl ring-gray-900/5 w-full p-4" >
+						<div className="flex flex-row gap-8 flex-wrap">
+							<div className="flex-1 min-w-[350px] rounded-sm overflow-hidden">
+								<SPFxApp />
+							</div>
 
-						<div>
-							<a href="https://iivioletkingii.github.io/IEMTracker"
-								target='_blank'
-								rel='noopener noreferrer'
-								className={`text-violet-600 hover:text-violet-800 underline dark:text-violet-300 hover:dark:text-violet-400`}><span>IEM Tracker Website</span></a>
+							<div className='flex-1 min-w-[350px] p-4 w-full flex flex-col'>
+								<a href="https://iivioletkingii.github.io/IEMTracker"
+									target='_blank'
+									rel='noopener noreferrer'
+									className={`text-violet-600 hover:text-violet-800 underline dark:text-violet-300 hover:dark:text-violet-400`}><span>IEM Tracker Website</span></a>
+
+								<div className='my-2'>
+									To help my community, I developed a React + AWS website to help their production team organize and loan In-Ear Monitors (earbuds) to volunteers on their worship team.
+								</div>
+
+								<div className='text-gray-500 dark:text-gray-400 w-full my-2'>React, GitHub Pages, AWS Lambda, AWS DynamoDB, AWS Cognito</div>
+
+								<div className='h-full flex justify-center mt-4 min-h-[400px]'>
+									<div className='w-full h-full relative max-w-sm'>
+
+										<Image
+											className='rounded-2xl absolute inset-0 w-full h-full object-cover object-top'
+											src="/pictures/iemtracker_users_1.png"
+											alt=""
+											width={500}
+											height={600}
+											priority
+										/>
+									</div>
+								</div>
+							</div>
 						</div>
 
-						<div>
-							To help my community, I developed a React + AWS website to help their production team organize and loan In-Ear Monitors (earbuds) to volunteers on their worship team.
-							<span className='text-gray-500 dark:text-gray-400 ml-2'>React, GitHub Pages, AWS Lambda, AWS DynamoDB</span>
-						</div>
 
 					</div>
 

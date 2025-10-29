@@ -1,5 +1,7 @@
 'use client'
 
+import Image from 'next/image';
+
 // import {FontAwesomneIcon} from
 const hoverClass = 'hover:text-violet-400';
 const linkClasses = `text-3xl ${hoverClass}`;
@@ -10,7 +12,14 @@ export default function Hero() {
 		<section className='min-h-[90vh] p-16 flex justify-center items-center gap-16'>
 			<div className='max-h-[60%] max-w-4xl flex justify-center items-center gap-16 flex-wrap'>
 				<div className="min-w-[300px] overflow-hidden rounded-2xl bg-card flex-1">
-					<img className='' src="https://raw.githubusercontent.com/IIVioletKingII/sam-depoule/main/src/assets/sam-110.jpg" alt="" />
+					<Image
+						className=''
+						src="https://raw.githubusercontent.com/IIVioletKingII/sam-depoule/main/src/assets/sam-110.jpg"
+						alt="A picture of me in a dapper suit!"
+						width={500}
+						height={700}
+						priority
+					/>
 				</div>
 				<div className="flex flex-col gap-8 font-semibold flex-1">
 					<span className="text-5xl font-semibold ">Sam DePoule</span>

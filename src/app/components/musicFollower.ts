@@ -105,7 +105,7 @@ export class MusicNoteFollower {
 			const ctx = this.ctx;
 			ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-			this.allNotes.forEach((n, i) => {
+			this.allNotes.forEach((n) => {
 
 				const beforeStart = tNow < n.startTime;
 				const isFadingOut = n.phase === 'fadeOut';
@@ -190,7 +190,7 @@ export class MusicNoteFollower {
 	}
 
 	public loadSongFromJson(notes: NoteEvent[]) {
-		const { fadeInLead, spawnOffset } = this.anim;
+		const { fadeInLead } = this.anim;
 
 		const tNow = Tone.getTransport().seconds;
 

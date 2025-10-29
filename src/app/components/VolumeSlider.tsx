@@ -4,7 +4,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Volume, Volume1, Volume2, VolumeX } from 'lucide-react'
 import { VolumeController } from './VolumeController'; // Import the simplified class
-import { init } from 'next/dist/compiled/webpack/webpack';
 
 // Define the component's props interface
 interface VolumeSliderProps {

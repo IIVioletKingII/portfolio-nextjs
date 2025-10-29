@@ -8,12 +8,6 @@ import ThemeToggle from './ThemeToggle'
 import { getFollower, MusicNoteFollower } from './musicFollower'
 import { useEffect } from 'react';
 
-const routes = [
-	{ name: 'Home', path: '/' },
-	{ name: 'About', path: '/about' },
-	{ name: 'Contact', path: '/contact' },
-];
-
 export default function Navbar() {
 	const pathname = usePathname();
 
@@ -31,6 +25,8 @@ export default function Navbar() {
 
 
 	function handleSetVolume(volume: number) {
+		console.log('volume change', volume);
+
 		// const follower = getFollower();
 		// follower.setVolume(volume);
 	}
@@ -50,14 +46,14 @@ export default function Navbar() {
 							Home
 						</Link>
 					</li>
-					<li>
+					{/* <li>
 						<Link
 							href='/about'
 							className={pathname === '/about' ? 'text-violet-700 dark:text-violet-400' : 'hover:text-violet-700 hover:dark:text-violet-400'}
 						>
 							About
 						</Link>
-					</li>
+					</li> */}
 				</ul>
 
 				<div className='flex gap-2'>

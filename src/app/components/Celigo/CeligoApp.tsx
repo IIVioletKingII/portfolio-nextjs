@@ -36,7 +36,7 @@ export const initialNodes: Node<CustomNodeData>[] = [
 			label: 'Builder Core Certification',
 			children: <div className='max-w-75'>I participated in Celigo Lift Off earning my Celigo Certification.</div>
 		},
-		position: { x: 0, y: 0 },
+		position: { x: 0, y: 0 }, // -y is up, +x is right
 		...nodeDefaults
 	},
 	{
@@ -44,9 +44,9 @@ export const initialNodes: Node<CustomNodeData>[] = [
 		type: 'customNode',
 		data: {
 			label: 'Workflow Experience',
-			children: <div className='max-w-75'>{workFlowExp}</div>
+			children: <div className='max-w-100'>{workFlowExp}</div>
 		},
-		position: { x: 400, y: 100 },
+		position: { x: 400, y: 100 }, // -y is up, +x is right
 		...nodeDefaults
 	},
 	{
@@ -60,7 +60,21 @@ export const initialNodes: Node<CustomNodeData>[] = [
 				<div>Number of webhook flows: 4</div>
 			</div>
 		},
-		position: { x: 400, y: -75 },
+		position: { x: 400, y: -75 }, // -y is up, +x is right
+		...nodeDefaults
+	},
+	{
+		id: '4',
+		type: 'customNode',
+		data: {
+			label: 'API Experience',
+			children: <div className='max-w-75'>
+				<div>Postman</div>
+				<div>Azure Functions</div>
+				<div>AWS API Gateway</div>
+			</div>
+		},
+		position: { x: 900, y: -40 }, // -y is up, +x is right
 		...nodeDefaults
 	},
 ]
@@ -75,6 +89,11 @@ const initialEdges: Edge[] = [
 		id: 'e1-3',
 		source: '1',
 		target: '3'
+	},
+	{
+		id: 'e2-4',
+		source: '3',
+		target: '4'
 	}
 ];
 
